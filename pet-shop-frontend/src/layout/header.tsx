@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 export const Header = () => {
   return (
-    <header className="flex h-32 items-center justify-between px-10 py-4 shadow-lg">
+    <header className="flex h-32 items-center justify-between px-10 py-4 shadow-inner rounded-md">
       <div className="flex items-center">
         <Logo />
       </div>
