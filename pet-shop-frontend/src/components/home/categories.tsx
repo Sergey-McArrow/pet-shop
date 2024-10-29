@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
+import { SectionTitle } from '@/components/ui/section-title'
 import { TCategory } from '@/types/data'
 import { useEffect, useState } from 'react'
 
@@ -14,11 +15,11 @@ export const Categories = ({}) => {
   }, [])
   return (
     <section className="container mx-auto pt-20">
-      <div className="flex items-center justify-between pb-10">
-        <h2 className="font-bold text-6xl pr-8">Categories</h2>
-        <hr className="border-gray-300 my-4 w-2/3" />
-        <Button variant={'outline'}>All categories</Button>
-      </div>
+      <SectionTitle
+        title="Categories"
+        link="categories"
+        btnText="All categories"
+      />
       <div className="grid grid-cols-4 gap-8">
         {categories?.slice(4).map((cat) => (
           <Card key={cat.id}>
