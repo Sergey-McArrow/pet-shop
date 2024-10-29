@@ -15,8 +15,8 @@ export const SectionTitle: FC<SectionTitleProps> = ({
 }) => {
   return (
     <div className="flex items-center justify-between pb-10">
-      <h2 className="font-bold text-6xl pr-8">{title}</h2>
-      <hr className="border-gray-300 my-4 w-2/3" />
+      <h2 className="font-bold text-6xl pr-20">{title}</h2>
+      <hr className="border-gray-300 my-4 ml-auto w-full" />
       <Link to={link}>
         <Button variant={'outline'}>{btnText}</Button>
       </Link>

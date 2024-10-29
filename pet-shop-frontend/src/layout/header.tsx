@@ -7,20 +7,20 @@ import { Link } from 'react-router-dom'
 export const Header = () => {
   return (
     <header className="flex h-32 items-center justify-between px-10 py-4 shadow-inner rounded-md">
-      <div className="flex items-center">
+      <Link to="/">
         <Logo />
-      </div>
-      <nav className="flex space-x-8">
-        <Link to="/" className="">
+      </Link>
+      <nav className="flex space-x-8 transition-transform duration-1000">
+        <Link to="/" className="hover:scale-105">
           Main Page
         </Link>
-        <Link to="/categories" className="">
+        <Link to="/categories" className="hover:scale-105">
           Categories
         </Link>
-        <Link to="/all-products" className="">
+        <Link to="/products" className="hover:scale-105">
           All products
         </Link>
-        <Link to="/all-sales" className="">
+        <Link to="/sales" className="hover:scale-105">
           All sales
         </Link>
       </nav>

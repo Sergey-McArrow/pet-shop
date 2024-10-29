@@ -1,3 +1,4 @@
+import { Breadcrumbs } from '@/components/ui/crumbs'
 import { Footer } from '@/layout/footer'
 import { Header } from '@/layout/header'
 import { Outlet } from 'react-router-dom'
@@ -7,6 +8,7 @@ export const Layout = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow">
+        <Breadcrumbs />
         <Outlet />
       </main>
       <Footer />
