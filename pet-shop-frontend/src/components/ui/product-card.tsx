@@ -26,13 +26,17 @@ export const ProductCard: FC<ProductCardProps> = ({ product }) => {
           <h4 className="font-medium line-clamp-1 text-xl">{product.title}</h4>
           <p className="py-5">
             {product?.discont_price ? (
-              <span className="font-semibold text-4xl">
-                ${product.discont_price}
-              </span>
-            ) : null}
-            <span className="font-medium text-xl text-gray-500 ml-4 line-through">
-              ${product.price}
-            </span>
+              <>
+                <span className="font-semibold text-4xl">
+                  ${product.discont_price}
+                </span>
+                <span className="font-medium text-xl text-gray-500 ml-4 line-through">
+                  ${product.price}
+                </span>
+              </>
+            ) : (
+              <span className="font-semibold text-4xl">${product.price}</span>
+            )}
           </p>
         </div>
       </Card>

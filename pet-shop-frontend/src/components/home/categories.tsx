@@ -9,7 +9,7 @@ export const Categories = ({}) => {
   useEffect(() => {
     fetch(`${baseUrl}/categories/all`)
       .then((data) => data.json())
-      .then((cats) => setCategories(cats))
+      .then((cats) => setCategories(cats.slice(4)))
       .catch((err) => console.error(err))
   }, [])
   return (
@@ -20,7 +20,7 @@ export const Categories = ({}) => {
         btnText="All categories"
       />
       <div className="grid grid-cols-4 gap-8">
-        {categories?.slice(4).map((cat) => <CategoriesCard cat={cat} />)}
+        {categories?.map((cat) => <CategoriesCard cat={cat} key={cat.id} />)}
       </div>
     </section>
   )

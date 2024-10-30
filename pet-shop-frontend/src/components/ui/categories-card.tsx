@@ -10,7 +10,7 @@ type CategoriesCardProps = {
 export const CategoriesCard: FC<CategoriesCardProps> = ({ cat }) => {
   const baseUrl = import.meta.env.VITE_API_URL
   return (
-    <Link key={cat.id} to={`categories/${cat.id}`}>
+    <Link key={cat.id} to={`/categories/${cat.title}`} state={cat.id}>
       <Card>
         <img src={`${baseUrl}/${cat.image}`} alt={cat.title} />
         <p className="text-center py-4 font-medium text-xl">{cat.title}</p>

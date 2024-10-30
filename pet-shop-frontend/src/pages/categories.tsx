@@ -15,7 +15,7 @@ export const CategoriesPage = () => {
     <section className="container mx-auto pb-24">
       <h2 className="font-bold text-6xl pr-20 pb-10">Categories</h2>
       <div className="grid grid-cols-4 gap-8">
-        {categories?.slice(4).map((cat) => <CategoriesCard cat={cat} />)}
+        {categories?.map((cat) => <CategoriesCard cat={cat} key={cat.id} />)}
       </div>
     </section>
   )

@@ -17,3 +17,7 @@ export type TProduct = {
   updatedAt: string
   categoryId: number
 }
+export type TCategoryResponse = {
+  category: TCategory
+  data: TProduct[]
+}
