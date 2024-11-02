@@ -7,8 +7,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { TCategoryResponse, TProduct } from '@/types/data'
-import { FC, useEffect, useMemo, useState } from 'react'
+import { useDebouncedValue } from '@/hooks/useDebouncedValue'
+import { useFilteredAndSortedProducts } from '@/hooks/useFilteredAndSortedProducts'
+import { TCategoryResponse } from '@/types/data'
+import { FC, useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
 type CategoryProps = {}
@@ -22,59 +24,19 @@ export const Category: FC<CategoryProps> = ({}) => {
   const [priceFromInput, setPriceFromInput] = useState<number | null>(null)
   const [priceToInput, setPriceToInput] = useState<number | null>(null)
 
-  const [priceFrom, setPriceFrom] = useState<number | null>(null)
-  const [priceTo, setPriceTo] = useState<number | null>(null)
-
   const [acceptDiscount, setAcceptDiscount] = useState<boolean>(false)
   const [sortOrder, setSortOrder] = useState<TSorted>('default')
 
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setPriceFrom(priceFromInput)
-      setPriceTo(priceToInput)
-    }, 700)
-    return () => clearTimeout(handler)
-  }, [priceFromInput, priceToInput])
+  const priceFrom = useDebouncedValue(priceFromInput, 700)
+  const priceTo = useDebouncedValue(priceToInput, 700)
 
-  const sortedAndFilteredProducts: TProduct[] = useMemo(() => {
-    if (!products) return []
-
-    let filteredProducts = [...products.data]
-
-    if (priceFrom !== null) {
-      filteredProducts = filteredProducts.filter((product) => {
-        const price = product.discont_price ?? product.price
-        return price >= priceFrom
-      })
-    }
-
-    if (priceTo !== null) {
-      filteredProducts = filteredProducts.filter((product) => {
-        const price = product.discont_price ?? product.price
-        return price <= priceTo
-      })
-    }
-
-    if (acceptDiscount) {
-      filteredProducts = filteredProducts.filter(
-        (product) => product.discont_price !== null
-      )
-    }
-
-    switch (sortOrder) {
-      case 'asc':
-        return filteredProducts.sort(
-          (a, b) => (a.discont_price ?? a.price) - (b.discont_price ?? b.price)
-        )
-      case 'desc':
-        return filteredProducts.sort(
-          (a, b) => (b.discont_price ?? b.price) - (a.discont_price ?? a.price)
-        )
-      case 'default':
-      default:
-        return filteredProducts
-    }
-  }, [products, priceFrom, priceTo, acceptDiscount, sortOrder])
+  const sortedAndFilteredProducts = useFilteredAndSortedProducts({
+    products,
+    priceFrom,
+    priceTo,
+    acceptDiscount,
+    sortOrder,
+  })
 
   const handlePriceFromChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
