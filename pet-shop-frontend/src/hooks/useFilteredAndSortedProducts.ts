@@ -1,10 +1,10 @@
-import { TProduct, TCategoryResponse } from '@/types/data'
+import { TProduct } from '@/types/data'
 import { useMemo } from 'react'
 
 type TSorted = 'default' | 'asc' | 'desc'
 
 interface UseFilteredAndSortedProductsProps {
-  products: TCategoryResponse | null
+  products: TProduct[] | []
   priceFrom: number | null
   priceTo: number | null
   acceptDiscount: boolean
@@ -21,7 +21,7 @@ export const useFilteredAndSortedProducts = ({
   return useMemo(() => {
     if (!products) return []
 
-    let filteredProducts = [...products.data]
+    let filteredProducts = [...products]
 
     if (priceFrom !== null) {
       filteredProducts = filteredProducts.filter((product) => {
