@@ -1,4 +1,3 @@
-import { Checkbox } from '@/components/ui/checkbox'
 import { Input } from '@/components/ui/input'
 import { ProductCard } from '@/components/ui/product-card'
 import {
@@ -19,66 +18,80 @@ export const Category: FC<CategoryProps> = ({}) => {
   const { pathname, state } = useLocation()
   const baseUrl = import.meta.env.VITE_API_URL
   const [products, setProducts] = useState<TCategoryResponse | null>(null)
+
+  const [priceFromInput, setPriceFromInput] = useState<number | null>(null)
+  const [priceToInput, setPriceToInput] = useState<number | null>(null)
+
   const [priceFrom, setPriceFrom] = useState<number | null>(null)
   const [priceTo, setPriceTo] = useState<number | null>(null)
-  const [acceptDiscount, setAcceptDiscount] = useState<boolean>(true)
+
+  const [acceptDiscount, setAcceptDiscount] = useState<boolean>(false)
   const [sortOrder, setSortOrder] = useState<TSorted>('default')
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setPriceFrom(priceFromInput)
+      setPriceTo(priceToInput)
+    }, 700)
+    return () => clearTimeout(handler)
+  }, [priceFromInput, priceToInput])
 
   const sortedAndFilteredProducts: TProduct[] = useMemo(() => {
     if (!products) return []
-    let filteredProducts = products.data
+
+    let filteredProducts = [...products.data]
 
     if (priceFrom !== null) {
-      filteredProducts = filteredProducts.filter(
-        (product) => product.discont_price ?? product.price >= priceFrom
-      )
+      filteredProducts = filteredProducts.filter((product) => {
+        const price = product.discont_price ?? product.price
+        return price >= priceFrom
+      })
     }
 
     if (priceTo !== null) {
-      filteredProducts = filteredProducts.filter(
-        (product) => product.discont_price ?? product.price <= priceTo
-      )
+      filteredProducts = filteredProducts.filter((product) => {
+        const price = product.discont_price ?? product.price
+        return price <= priceTo
+      })
     }
 
     if (acceptDiscount) {
       filteredProducts = filteredProducts.filter(
-        (product) => product.discont_price
+        (product) => product.discont_price !== null
       )
     }
 
     switch (sortOrder) {
       case 'asc':
-        filteredProducts = filteredProducts.sort((a, b) => a.price - b.price)
-        break
+        return filteredProducts.sort(
+          (a, b) => (a.discont_price ?? a.price) - (b.discont_price ?? b.price)
+        )
       case 'desc':
-        filteredProducts = filteredProducts.sort((a, b) => b.price - a.price)
-        break
+        return filteredProducts.sort(
+          (a, b) => (b.discont_price ?? b.price) - (a.discont_price ?? a.price)
+        )
       case 'default':
       default:
-        filteredProducts = products.data
-        break
+        return filteredProducts
     }
-
-    return filteredProducts
   }, [products, priceFrom, priceTo, acceptDiscount, sortOrder])
 
   const handlePriceFromChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
     const parsedValue = value ? parseFloat(value) : null
-    console.log(`Price From: ${parsedValue}`)
-    setPriceFrom(parsedValue)
+    setPriceFromInput(parsedValue)
   }
 
   const handlePriceToChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
     const parsedValue = value ? parseFloat(value) : null
-    console.log(`Price To: ${parsedValue}`)
-    setPriceTo(parsedValue)
+    setPriceToInput(parsedValue)
   }
 
   const handleSortOrderChange = (value: string) => {
     setSortOrder(value as TSorted)
   }
+
   useEffect(() => {
     fetch(`${baseUrl}/categories/${state}`)
       .then((data) => data.json())
@@ -112,10 +125,12 @@ export const Category: FC<CategoryProps> = ({}) => {
           >
             Discounted items
           </label>
-          <Checkbox
+          <input
+            type="checkbox"
+            className="bg-inherit"
             id="discount"
             checked={acceptDiscount}
-            onCheckedChange={(e) => setAcceptDiscount(e as boolean)}
+            onChange={(e) => setAcceptDiscount(e.target.checked)}
           />
         </div>
         <div className="flex gap-4 items-center">
@@ -133,7 +148,7 @@ export const Category: FC<CategoryProps> = ({}) => {
         </div>
       </div>
       <div className="grid grid-cols-4 gap-8">
-        {sortedAndFilteredProducts?.map((p) => (
+        {sortedAndFilteredProducts.map((p) => (
           <ProductCard product={p} key={p.id} />
         ))}
       </div>
