@@ -11,7 +11,7 @@ type ProductCardProps = {
 
 export const ProductCard: FC<ProductCardProps> = ({ product }) => {
   return (
-    <Link to={`products/${product.id}`}>
+    <Link to={`/products/${product.title}`} state={product.id}>
       <Card className="relative">
         {product.discont_price ? (
           <Badge className="p-2 absolute right-2 top-4">
