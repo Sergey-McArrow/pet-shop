@@ -65,7 +65,6 @@ export const Products = ({}) => {
           <ProductCard product={p} key={p.id} />
         ))}
       </div>
-      <>{JSON.stringify(products, null, 4)}</>
     </section>
   )
 }

@@ -19,6 +19,7 @@ export const ProductCard: FC<ProductCardProps> = ({ product }) => {
           </Badge>
         ) : null}
         <img
+          className="h-72"
           src={`${import.meta.env.VITE_API_URL}/${product.image}`}
           alt={product.title}
         />
