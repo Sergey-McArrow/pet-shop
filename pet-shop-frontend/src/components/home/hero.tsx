@@ -1,13 +1,12 @@
+import heroImg from '@/assets/hero.png'
 import { Button } from '@/components/ui/button'
-import { FC } from 'react'
+import { Link } from 'react-router-dom'
 
-type HeroProps = {}
-
-export const Hero: FC<HeroProps> = ({}) => {
+export const Hero = () => {
   return (
     <section className="min-h-[600px] bg-[#00000066]">
       <img
-        src="/src/assets/hero.png"
+        src={heroImg}
         alt="Hero image"
         className="absolute -z-10 min-h-[600px]"
       />
@@ -17,9 +16,11 @@ export const Hero: FC<HeroProps> = ({}) => {
           <br />
           on Pets Products!
         </h1>
-        <Button className="bg-blue-700 px-14 py-6 text-xl hover:bg-blue-900">
-          Check out
-        </Button>
+        <Link to={'/products'}>
+          <Button className="bg-slate-700 px-14 py-6 text-xl hover:bg-slate-900">
+            Check out
+          </Button>
+        </Link>
       </div>
     </section>
   )

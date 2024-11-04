@@ -1,17 +1,13 @@
 import { CategoriesCard } from '@/components/ui/categories-card'
 import { SectionTitle } from '@/components/ui/section-title'
 import { TCategory } from '@/types/data'
-import { useEffect, useState } from 'react'
+import { FC } from 'react'
 
-export const Categories = ({}) => {
-  const baseUrl = import.meta.env.VITE_API_URL
-  const [categories, setCategories] = useState<TCategory[] | null>(null)
-  useEffect(() => {
-    fetch(`${baseUrl}/categories/all`)
-      .then((data) => data.json())
-      .then((cats) => setCategories(cats.slice(4)))
-      .catch((err) => console.error(err))
-  }, [])
+type TCategoriesProps = {
+  categories: TCategory[]
+}
+
+export const Categories: FC<TCategoriesProps> = ({ categories }) => {
   return (
     <section className="container mx-auto pt-20">
       <SectionTitle

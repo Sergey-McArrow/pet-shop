@@ -5,8 +5,11 @@ import { useFilteredAndSortedProducts } from '@/hooks/useFilteredAndSortedProduc
 import { TProduct } from '@/types/data'
 import { TSorted } from '@/types/sortAndFilter'
 import { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 
 export const Products = ({}) => {
+  const { pathname } = useLocation()
+
   const baseUrl = import.meta.env.VITE_API_URL
   const [products, setProducts] = useState<TProduct[] | null>(null)
 
@@ -46,7 +49,11 @@ export const Products = ({}) => {
   useEffect(() => {
     fetch(`${baseUrl}/products/all`)
       .then((data) => data.json())
-      .then((prods) => setProducts(prods))
+      .then((prods) =>
+        pathname.includes('sale')
+          ? setProducts(prods.filter((p: TProduct) => p.discont_price))
+          : setProducts(prods)
+      )
       .catch((err) => console.error(err))
   }, [])
   return (

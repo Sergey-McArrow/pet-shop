@@ -1,17 +1,20 @@
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
+import { QuantitySwitch } from '@/components/ui/quantitySwitch'
+import { updateQuantity } from '@/store/cartSlice'
 import { TProduct } from '@/types/data'
-import { FC, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { useLocation } from 'react-router-dom'
 
-type ProductProps = {}
-
-export const Product: FC<ProductProps> = ({}) => {
+export const Product = () => {
   const baseUrl = import.meta.env.VITE_API_URL
   const { state } = useLocation()
   const [product, setProduct] = useState<TProduct | null>(null)
-  const [quantity, setQuantity] = useState(1)
   const [isColapsed, setIsColapsed] = useState(true)
+  const [quantity, setQuantity] = useState(1)
+
+  const dispatch = useDispatch()
+
   useEffect(() => {
     fetch(`${baseUrl}/products/${state}`)
       .then((data) => data.json())
@@ -46,31 +49,16 @@ export const Product: FC<ProductProps> = ({}) => {
             )}
           </p>
           <div className="flex gap-8">
-            <div className="flex gap-2">
-              <Button
-                variant={'outline'}
-                disabled={quantity === 1}
-                onClick={() => setQuantity((prev) => prev - 1)}
-              >
-                -
-              </Button>
-              <Input
-                className="w-24 text-center"
-                type="text"
-                value={quantity}
-              />
-              <Button
-                variant={'outline'}
-                onClick={() => setQuantity((prev) => prev + 1)}
-              >
-                +
-              </Button>
-            </div>
-            <Button>Add to cart</Button>
+            <QuantitySwitch quantity={quantity} setQuantity={setQuantity} />
+            <Button
+              onClick={() => dispatch(updateQuantity({ product, quantity }))}
+            >
+              Add to cart
+            </Button>
           </div>
           <div className="pt-8">
             <h4 className="font-medium text-xl pb-4">Description</h4>
-            <p className={isColapsed ? 'line-clamp-6' : ''}>
+            <p className={isColapsed ? 'line-clamp-5' : ''}>
               {product.description}
             </p>
             <Button

@@ -1,3 +1,7 @@
+type Prettify<T> = {
+  [K in keyof T]: T[K]
+} & {}
+
 export type TCategory = {
   id: number
   title: string
@@ -17,6 +21,8 @@ export type TProduct = {
   updatedAt: string
   categoryId: number
 }
+export type TProductWithQuantity = Prettify<TProduct & { quantity: number }>
+
 export type TCategoryResponse = {
   category: TCategory
   data: TProduct[]
