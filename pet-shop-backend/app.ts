@@ -3,6 +3,7 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import { categoriesRouter } from './src/routes/categories'
 import { PrismaClient } from '@prisma/client'
+import { getAllCategoriies } from './src/controllers/catgories'
 
 const prisma = new PrismaClient()
 dotenv.config()
@@ -16,10 +17,8 @@ app.use(cors({ origin: '*' }))
 app.use(express.urlencoded())
 app.use(express.json())
 app.get('/categories/all', async (_req, res) => {
-  const categories = await prisma.categories.findMany()
-  return res.json(categories)
+  getAllCategoriies(_req, res)
 })
-
 const start = async () => {
   try {
     app.listen(PORT, () => {

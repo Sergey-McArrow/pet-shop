@@ -3,4 +3,4 @@ import { getAllCategoriies } from '../controllers/catgories'
 
 export const categoriesRouter = Router()
 
-categoriesRouter.get('/all', getAllCategoriies)
+// categoriesRouter.get('/all', getAllCategoriies)

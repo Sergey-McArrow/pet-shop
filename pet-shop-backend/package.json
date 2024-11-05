@@ -16,6 +16,7 @@
     "@prisma/client": "^5.21.1",
     "@sequelize/postgres": "^7.0.0-alpha.43",
     "@types/express": "^5.0.0",
+    "@types/express-serve-static-core": "^5.0.1",
     "@vercel/postgres": "^0.10.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
