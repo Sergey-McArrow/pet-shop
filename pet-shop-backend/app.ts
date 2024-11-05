@@ -22,13 +22,13 @@ app.get('/categories/all', (_req, res) => {
   }
   all()
 })
-const start = async () => {
-  try {
-    app.listen(PORT, () => {
-      console.log(`\nServer started on ${PORT} port...`)
-    })
-  } catch (err) {
-    console.log(err)
-  }
-}
-start()
+app.listen(PORT, () => {
+  console.log(`\nServer started on ${PORT} port...`)
+})
+// const start = async () => {
+//   try {
+//   } catch (err) {
+//     console.log(err)
+//   }
+// }
+// start()
