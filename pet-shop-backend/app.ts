@@ -1,9 +1,8 @@
 import express from 'express'
 import cors from 'cors'
 import dotenv from 'dotenv'
-import { categoriesRouter } from './src/routes/categories'
+import { categoriesRouter } from './dumps/routes/categories'
 import { PrismaClient } from '@prisma/client'
-import { getAllCategoriies } from './src/controllers/catgories'
 
 const prisma = new PrismaClient()
 dotenv.config()
@@ -16,8 +15,12 @@ if (!PORT) throw new Error('Cannot get .env variable')
 app.use(cors({ origin: '*' }))
 app.use(express.urlencoded())
 app.use(express.json())
-app.get('/categories/all', async (_req, res) => {
-  getAllCategoriies(_req, res)
+app.get('/categories/all', (_req, res) => {
+  async function all() {
+    const all = await prisma.categories.findMany()
+    res.json(all)
+  }
+  all()
 })
 const start = async () => {
   try {
