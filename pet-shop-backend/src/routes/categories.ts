@@ -1,13 +1,6 @@
-import express from 'express'
-import { PrismaClient } from '@prisma/client'
+import { Router } from 'express'
+import { getAllCategoriies } from '../controllers/catgories'
 
-const prisma = new PrismaClient()
-export const categoriesRouter = express.Router()
+export const categoriesRouter = Router()
 
-categoriesRouter.get('/all', (_req, res) => {
-  async function all() {
-    const categories = await prisma.categories.findMany()
-    res.json(categories)
-  }
-  all()
-})
+categoriesRouter.get('/all', getAllCategoriies)

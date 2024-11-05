@@ -1,0 +1,5 @@
+import { Router } from 'express';
+import { getAllCategoriies } from 'src/controllers/catgories';
+export const categoriesRouter = Router();
+categoriesRouter.get('/all', getAllCategoriies);
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2F0ZWdvcmllcy5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9yb3V0ZXMvY2F0ZWdvcmllcy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLEVBQUUsTUFBTSxFQUFFLE1BQU0sU0FBUyxDQUFBO0FBQ2hDLE9BQU8sRUFBRSxpQkFBaUIsRUFBRSxNQUFNLDJCQUEyQixDQUFBO0FBRTdELE1BQU0sQ0FBQyxNQUFNLGdCQUFnQixHQUFHLE1BQU0sRUFBRSxDQUFBO0FBRXhDLGdCQUFnQixDQUFDLEdBQUcsQ0FBQyxNQUFNLEVBQUUsaUJBQWlCLENBQUMsQ0FBQSJ9
