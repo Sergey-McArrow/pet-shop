@@ -4,6 +4,7 @@
     "esModuleInterop": true,
     "target": "ESNext",
     "moduleResolution": "Node",
+    "rootDir": "./src",
     "outDir": "dist",
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
@@ -16,5 +17,6 @@
   "ts-node": {
     "esm": true
   },
+  "include": ["src"],
   "lib": ["esnext"]
 }

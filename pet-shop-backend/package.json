@@ -4,8 +4,9 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "tsc",
-    "dev": "tsx watch ./src/app.ts"
+    "start": "tsc && node ./dist/app.js",
+    "dev": "tsx watch ./src/app.ts",
+    "vercel-build": "prisma generate && prisma migrate deploy && node ./dist/app.js"
   },
   "keywords": [],
   "author": "mcarrow",
