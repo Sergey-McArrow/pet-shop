@@ -1,3 +1,6 @@
+import { useLocation } from 'react-router-dom'
+import { Fragment } from 'react/jsx-runtime'
+
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -5,8 +8,6 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
-import { useLocation } from 'react-router-dom'
-import { Fragment } from 'react/jsx-runtime'
 
 export const Breadcrumbs = () => {
   let location = useLocation()
@@ -14,7 +15,7 @@ export const Breadcrumbs = () => {
   if (!pathParts[0].length) return null
   const pathes = pathParts.map((p) => p.replaceAll('%20', ' '))
   return (
-    <Breadcrumb className="container mx-auto py-10">
+    <Breadcrumb className=" container mx-auto w-11/12 md:w-full  py-10">
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink href="/">Main Page</BreadcrumbLink>

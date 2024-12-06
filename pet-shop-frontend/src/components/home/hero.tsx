@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom'
+
 import heroImg from '@/assets/hero.png'
 import { Button } from '@/components/ui/button'
-import { Link } from 'react-router-dom'
 
 export const Hero = () => {
   return (
@@ -8,16 +9,16 @@ export const Hero = () => {
       <img
         src={heroImg}
         alt="Hero image"
-        className="absolute -z-10 min-h-[600px]"
+        className="absolute -z-10 min-h-[600px] object-cover"
       />
-      <div className="px-10 pt-20">
-        <h1 className="text-white font-bold text-8xl leading-[106px] pb-10">
+      <div className="px-10 pt-20 pb-10 md:pb-10">
+        <h1 className="text-white font-bold text-6xl lg:text-7xl leading-snug pb-10">
           Amazing Discounts
           <br />
-          on Pets Products!
+          on Pets Products!
         </h1>
         <Link to={'/products'}>
-          <Button className="bg-slate-700 px-14 py-6 text-xl hover:bg-slate-900">
+          <Button className="bg-slate-700 px-14 py-6 text-lg md:text-xl hover:bg-slate-900">
             Check out
           </Button>
         </Link>

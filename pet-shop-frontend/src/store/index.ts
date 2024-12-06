@@ -1,7 +1,8 @@
-import cartReducer from './cartSlice'
 import { configureStore } from '@reduxjs/toolkit'
-import { persistStore, persistReducer } from 'redux-persist'
+import { persistReducer, persistStore } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+
+import cartReducer from './cartSlice'
 
 const persistConfig = {
   key: 'cart',
@@ -14,6 +15,12 @@ export const store = configureStore({
   reducer: {
     cartReducer: persistedCartReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE'],
+      },
+    }),
 })
 
 export const persistor = persistStore(store)

@@ -1,3 +1,5 @@
+import { ChangeEvent, Dispatch, FC, SetStateAction } from 'react'
+
 import { Input } from '@/components/ui/input'
 import {
   Select,
@@ -7,13 +9,12 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { TSorted } from '@/types/sortAndFilter'
-import { ChangeEvent, Dispatch, FC } from 'react'
 
 type SotrAndFilterProps = {
   handlePriceFromChange: (e: ChangeEvent<HTMLInputElement>) => void
   handlePriceToChange: (e: ChangeEvent<HTMLInputElement>) => void
   acceptDiscount: boolean
-  setAcceptDiscount: Dispatch<React.SetStateAction<boolean>>
+  setAcceptDiscount: Dispatch<SetStateAction<boolean>>
   sortOrder: TSorted
   handleSortOrderChange: (value: string) => void
 }
@@ -27,7 +28,7 @@ export const SortAndFilter: FC<SotrAndFilterProps> = ({
   handleSortOrderChange,
 }) => {
   return (
-    <div className="flex gap-10 items-center py-10">
+    <div className="flex flex-col md:flex-row gap-4 md:gap-10 md:items-center py-10">
       <div className="flex gap-4 items-center">
         <p>Price</p>
         <Input
