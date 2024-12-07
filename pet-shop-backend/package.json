@@ -4,7 +4,9 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch ./src/app.ts"
+    "start": "tsc && node ./dist/app.js",
+    "dev": "tsx watch src/app.ts",
+    "vercel-build": "prisma generate && node ./dist/app.js"
   },
   "keywords": [],
   "author": "mcarrow",
@@ -14,6 +16,7 @@
     "@prisma/client": "^5.21.1",
     "@sequelize/postgres": "^7.0.0-alpha.43",
     "@types/express": "^5.0.0",
+    "@types/express-serve-static-core": "^5.0.1",
     "@vercel/postgres": "^0.10.0",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
@@ -22,13 +25,17 @@
     "pg-hstore": "^2.3.4",
     "prisma": "^5.21.1",
     "sequelize": "^6.37.5",
-    "typescript": "^5.6.3"
+    "typescript": "^5.7.2"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
-    "@types/node": "^22.8.7",
+    "@types/node": "^22.10.1",
     "nodemon": "^3.1.7",
     "ts-node": "^10.9.2",
     "tsx": "^4.19.2"
+  },
+  "prisma": {
+    "seed": "node --loader ts-node/esm src/prisma/seed.ts",
+    "schema": "src/prisma/schema.prisma"
   }
 }

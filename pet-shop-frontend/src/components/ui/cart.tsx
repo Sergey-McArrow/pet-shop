@@ -2,7 +2,7 @@ import { FC } from 'react'
 
 type CartProps = {}
 
-export const Cart: FC<CartProps> = ({}) => {
+export const Cart: FC<CartProps> = () => {
   return (
     <svg
       width="44"

@@ -14,7 +14,7 @@ export type TProduct = {
   id: number
   title: string
   price: number
-  discont_price: number | null
+  discount_price: number | null
   description: string
   image: string
   createdAt: string
@@ -26,4 +26,9 @@ export type TProductWithQuantity = Prettify<TProduct & { quantity: number }>
 export type TCategoryResponse = {
   category: TCategory
   data: TProduct[]
+}
+
+export type TCategoryIdWithProducts = {
+  category: TCategory
+  products: TProduct[]
 }

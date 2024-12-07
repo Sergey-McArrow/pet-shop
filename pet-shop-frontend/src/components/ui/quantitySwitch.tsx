@@ -1,6 +1,7 @@
+import { FC, SetStateAction } from 'react'
+
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { FC, SetStateAction } from 'react'
 
 type QuantitySwitchProps = {
   quantity: number
@@ -12,7 +13,7 @@ export const QuantitySwitch: FC<QuantitySwitchProps> = ({
   setQuantity,
 }) => {
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-2 ">
       <Button
         variant={'outline'}
         disabled={quantity === 1}
@@ -21,7 +22,7 @@ export const QuantitySwitch: FC<QuantitySwitchProps> = ({
         -
       </Button>
       <Input
-        className="w-24 text-center"
+        className="md:w-24 text-center"
         type="number"
         value={quantity}
         onChange={(e) => setQuantity(Number(e.target.value))}

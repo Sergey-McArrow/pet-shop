@@ -2,5 +2,15 @@
   "trailingComma": "es5",
   "semi": false,
   "singleQuote": true,
-  "plugins": ["prettier-plugin-tailwindcss","@trivago/prettier-plugin-sort-imports" ]
+  "printWidth": 80,
+  "tabWidth": 2,
+  "plugins": [
+    "prettier-plugin-tailwindcss",
+    "@trivago/prettier-plugin-sort-imports"
+  ],
+  "importOrder": ["^@/(.*)$", "^[./]"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "tailwindConfig": "./tailwind.config.js",
+  "tailwindFunctions": ["clsx", "cn"]
 }

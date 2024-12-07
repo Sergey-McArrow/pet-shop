@@ -1,9 +1,9 @@
-import { FacebookIcon, TwitterIcon, InstagramIcon } from 'lucide-react'
+import { FacebookIcon, InstagramIcon, TwitterIcon } from 'lucide-react'
 
 export const Footer = () => {
   return (
     <footer className="py-8 shadow-lg rounded-md">
-      <div className="container mx-auto px-4">
+      <div className=" container mx-auto w-11/12 md:w-full  px-4">
         <div className="flex flex-wrap justify-between">
           <div className="w-full md:w-1/4 mb-6 md:mb-0">
             <h2 className="text-lg font-semibold mb-2">Contact</h2>
