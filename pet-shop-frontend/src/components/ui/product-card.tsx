@@ -26,7 +26,7 @@ export const ProductCard: FC<ProductCardProps> = ({ product }) => {
       <Link to={`/products/${product.title}`} state={product.id}>
         <img
           className="h-48 sm:h-72 w-full object-contain"
-          src={`${import.meta.env.VITE_API_URL}/${product.image}`}
+          src={`${import.meta.env.VITE_API_URL}/public/${product.image}`}
           alt={product.title}
         />
       </Link>

@@ -37,7 +37,7 @@ export const Product = () => {
          container mx-auto w-11/12 md:w-full grid md:grid-cols-2 gap-8 transition-all duration-700 ease-in-out`}
       >
         <img
-          src={`${import.meta.env.VITE_API_URL}/${product.image}`}
+          src={`${import.meta.env.VITE_API_URL}/public/${product.image}`}
           alt={product.title}
         />
         <div>

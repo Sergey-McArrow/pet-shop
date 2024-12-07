@@ -14,7 +14,7 @@ export const CategoriesCard: FC<CategoriesCardProps> = ({ cat }) => {
   return (
     <Link key={cat.id} to={`/categories/${cat.title}`} state={cat.id}>
       <Card className="min-h-[350px]">
-        <img src={`${baseUrl}/${cat.image}`} alt={cat.title} />
+        <img src={`${baseUrl}/public/${cat.image}`} alt={cat.title} />
         <p className="text-center py-4 font-medium text-xl">{cat.title}</p>
       </Card>
     </Link>

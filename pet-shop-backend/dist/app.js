@@ -19,11 +19,11 @@ app.use(cors_1.corsOptions);
 app.use(cors_1.corsHeaders);
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
-app.use(express_1.default.static("public"));
+app.use("/public", express_1.default.static("public"));
 app.use("/categories", categories_1.categoriesRouter);
 app.use("/products", products_1.productsRouter);
 app.use("/orders", orders_1.orderRouter);
-app.get("/health", (req, res) => {
+app.get("/health", (_req, res) => {
     res.json({ status: "ok" });
 });
 if (process.env.VERCEL !== "1") {
