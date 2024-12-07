@@ -6,8 +6,8 @@ export type TCategory = {
   id: number
   title: string
   image: string
-  createdAt: string
-  updatedAt: string
+  createdAt?: string
+  updatedAt?: string
 }
 
 export type TProduct = {
@@ -17,8 +17,8 @@ export type TProduct = {
   discount_price: number | null
   description: string
   image: string
-  createdAt: string
-  updatedAt: string
+  createdAt?: string
+  updatedAt?: string
   categoryId: number
 }
 export type TProductWithQuantity = Prettify<TProduct & { quantity: number }>
