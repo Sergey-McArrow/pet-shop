@@ -20,7 +20,7 @@ export const CartItem = ({ product, quantity, setQuantity }: CartItemProps) => {
   return (
     <div className="rounded-lg flex flex-col lg:flex-row shadow-lg dark:shadow-slate-900">
       <img
-        src={`${baseUrl}/${product.image}`}
+        src={`${baseUrl}/public/${product.image}`}
         alt={product.title}
         className="min-w-[200px] h-[180px] object-contain"
       />
