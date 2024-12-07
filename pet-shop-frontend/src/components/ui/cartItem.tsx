@@ -37,14 +37,9 @@ export const CartItem = ({ product, quantity, setQuantity }: CartItemProps) => {
         <div className="flex flex-col md:flex-row items-center space-x-6 space-y-2 pt-6">
           <QuantitySwitch quantity={quantity} setQuantity={setQuantity} />
           {product?.discount_price ? (
-            <div>
-              <span className="font-semibold text-xl md:text-4xl">
-                ${product.discount_price}
-              </span>
-              <span className="font-medium text-xl md:text-4xl text-slate-500 ml-4 line-through">
-                ${product.price}
-              </span>
-            </div>
+            <span className="font-semibold text-xl md:text-4xl">
+              ${product.discount_price}
+            </span>
           ) : (
             <span className="font-semibold text-xl md:text-4xl">
               ${product.price}
