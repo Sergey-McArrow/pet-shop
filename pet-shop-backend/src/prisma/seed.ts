@@ -2,8 +2,10 @@ import { PrismaClient } from "@prisma/client"
 import * as fs from "fs"
 import { fileURLToPath } from "url"
 import { dirname, join } from "path"
+import { config } from "dotenv"
+config()
 
-const __filename = fileURLToPath(import.meta.url)
+const __filename = fileURLToPath(process.argv[1])
 const __dirname = dirname(__filename)
 
 const prisma = new PrismaClient()

@@ -1,4 +1,0 @@
-import { Router } from 'express';
-export const categoriesRouter = Router();
-// categoriesRouter.get('/all', getAllCategoriies)
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2F0ZWdvcmllcy5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL2R1bXBzL3JvdXRlcy9jYXRlZ29yaWVzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE9BQU8sRUFBRSxNQUFNLEVBQUUsTUFBTSxTQUFTLENBQUE7QUFHaEMsTUFBTSxDQUFDLE1BQU0sZ0JBQWdCLEdBQUcsTUFBTSxFQUFFLENBQUE7QUFFeEMsa0RBQWtEIn0=

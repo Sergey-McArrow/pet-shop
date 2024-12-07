@@ -10,27 +10,32 @@ const prisma = new PrismaClient()
 dotenv.config()
 
 const app = express()
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 3000
 
-if (!PORT) throw new Error("Cannot get .env variable")
-
-app.use(cors({ origin: "*" }))
-app.use(express.urlencoded())
+app.use(cors())
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 app.use(express.static("public"))
 
 app.use("/categories", categoriesRouter)
 app.use("/products", productsRouter)
 app.use("/orders", orderRouter)
-// app.use(errorHandler)
 
-app.listen(PORT, async () => {
-  try {
-    await prisma.$connect()
-    console.log("✅ Database connection established")
-    console.log(`🚀 Server started on port ${PORT}`)
-  } catch (error) {
-    console.error("❌ Error connecting to the database:", error)
-    process.exit(1)
-  }
+app.get("/health", (req, res) => {
+  res.json({ status: "ok" })
 })
+
+if (process.env.VERCEL !== "1") {
+  app.listen(PORT, async () => {
+    try {
+      await prisma.$connect()
+      console.log("✅ Database connection established")
+      console.log(`🚀 Server started on port ${PORT}`)
+    } catch (error) {
+      console.error("❌ Error connecting to the database:", error)
+      process.exit(1)
+    }
+  })
+}
+
+export default app
