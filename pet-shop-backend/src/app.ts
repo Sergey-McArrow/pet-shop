@@ -12,12 +12,29 @@ dotenv.config()
 const app = express()
 const PORT = process.env.PORT || 3333
 
+const allowedOrigins = [
+  process.env.APP_URL,
+  "http://localhost:5173",
+  "http://localhost:3000",
+  "https://pet-shop-ivory-alpha.vercel.app",
+].filter(Boolean)
+
 app.use(
   cors({
-    origin: [process.env.APP_URL ?? "http://localhost:5173"],
+    origin: (
+      origin: string | undefined,
+      callback: (err: Error | null, allow?: boolean) => void
+    ) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true)
+      } else {
+        callback(new Error("Not allowed by CORS"))
+      }
+    },
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
+    optionsSuccessStatus: 200,
   })
 )
 
